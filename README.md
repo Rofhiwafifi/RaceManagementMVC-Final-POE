@@ -106,7 +106,7 @@ Results are managed
    score.
 4. Submit the result.
 5. Publish the result when it is ready.
-6. Participants can view their results in My Results.
+6. Participants can view their results in My Results
 
 Validation and Session Handling
 - Request models use data annotations to check required fields, valid
@@ -118,3 +118,4 @@ Validation and Session Handling
 - The session is configured with a 30-minute idle timeout.
 - The API service adds a Bearer authentication header when a token is
   available in the session.
+
