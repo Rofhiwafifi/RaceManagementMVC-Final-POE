@@ -62,3 +62,15 @@ Do not commit real passwords, private API keys or production credentials
 to source control. Use development user secrets or environment variables
 for sensitive configuration. The API base URL is configuration, and
 should be changed to match the environment where the API is running.
+
+Running the Application
+Option 1: Visual Studio
+1. Extract or open the RaceManagementMVC solution.
+2. Open RaceManagementMVC.sln in Visual Studio.
+3. Make sure the backend API is running.
+4. Confirm that ApiSettings:BaseUrl in appsettings.json points to
+   the API.
+5. Set RaceManagementMVC as the startup project.
+6. Run the project using the HTTPS profile.
+7. Open the local URL shown by Visual Studio.
+
