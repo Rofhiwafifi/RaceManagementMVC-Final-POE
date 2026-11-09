@@ -82,3 +82,12 @@ Register and log in
 4. Open the login page and enter the account credentials.
 5. After a successful login, the application stores the returned user
    information and token in the session.
+
+Organiser manages an event
+1. Log in as an organiser.
+2. Open the organiser dashboard.
+3. Open the events section.
+4. View existing events or create a new event.
+5. Edit or delete an event when required.
+6. Manage the categories and results associated with race events.
+7. 
