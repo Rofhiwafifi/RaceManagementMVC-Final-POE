@@ -108,3 +108,13 @@ Results are managed
 5. Publish the result when it is ready.
 6. Participants can view their results in My Results.
 
+Validation and Session Handling
+- Request models use data annotations to check required fields, valid
+  email addresses and numeric ranges.
+- Razor validation helpers and the validation scripts partial support
+  displaying validation feedback in forms.
+- The application uses ASP.NET Core session to retain login
+  information between requests.
+- The session is configured with a 30-minute idle timeout.
+- The API service adds a Bearer authentication header when a token is
+  available in the session.
