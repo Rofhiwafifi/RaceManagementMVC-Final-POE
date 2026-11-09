@@ -32,3 +32,13 @@ functionality:
 - Dashboards: separate organiser and participant dashboard pages.
 - Form validation: model validation attributes and client-side
   validation support.
+
+User Roles
+The application uses user role information, including:
+- Organiser: intended to manage events, categories, enrolments and
+  results.
+- Participant: intended to browse events, enrol and view personal
+  enrolments and results.
+The user's role and authentication information are stored in the session
+after a successful login. The backend API remains responsible for
+validating protected API requests.
