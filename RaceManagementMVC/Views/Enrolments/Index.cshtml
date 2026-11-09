@@ -1,0 +1,65 @@
+﻿@model RaceManagementMVC.Models.OrganiserEventSelectionViewModel
+@{
+    ViewData["Title"] = "Event Enrolments";
+}
+<div class="container page-wrap">
+    <div class="page-heading">
+        <span class="eyebrow">ORGANISER SPACE</span>
+        <h1>🏃 Event Enrolments</h1>
+        <p>Choose a race to see who's joining the starting line.</p>
+    </div>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <div class="cute-panel mb-4">
+        <form method="get" asp-action="Index" class="row g-3 align-items-end">
+            <div class="col-md-8">
+                <label class="form-label">Select an event</label>
+                <select name="eventId" class="form-select" required>
+                    <option value="">Choose an event...</option>
+                    @foreach (var ev in Model.Events)
+                    {
+                        <option value="@ev.eventId" selected="@(Model.SelectedEventId == ev.eventId)">
+                            @ev.eventName — @ev.eventDate.ToString("dd MMM yyyy")
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4"><button class="btn btn-raceday w-100" type="submit">Show Enrolments</button></div>
+        </form>
+    </div>
+
+    @if (Model.SelectedEventId.HasValue)
+    {
+        <h2 class="section-title">Participants</h2>
+        @if (Model.Enrolments.Count == 0)
+        {
+            <div class="empty-state">🌱 No enrolments yet. Share your event and get runners excited!</div>
+        }
+        else
+        {
+            <div class="table-responsive cute-panel">
+                <table class="table align-middle">
+                    <thead><tr><th>Participant</th><th>Category</th><th>Enrolled</th><th>Status</th><th>Result</th></tr></thead>
+                    <tbody>
+                        @foreach (var e in Model.Enrolments)
+                        {
+                            <tr>
+                                <td>@e.participantName</td>
+                                <td>@e.categoryName</td>
+                                <td>@e.enrolmentDate.ToString("dd MMM yyyy")</td>
+                                <td><span class="status-pill @(e.status == "Confirmed" ? "status-good" : "status-wait")">@e.status</span></td>
+                                <td><a class="btn btn-sm btn-soft" asp-controller="Results" asp-action="Create" asp-route-eventId="@Model.SelectedEventId" asp-route-enrolmentId="@e.enrolmentId">Enter result</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    <a class="btn btn-outline-secondary mt-3" asp-controller="Events" asp-action="Index">← Back to events</a>
+</div>
+

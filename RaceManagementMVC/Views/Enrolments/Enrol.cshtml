@@ -1,0 +1,73 @@
+﻿@model RaceManagementMVC.Models.createEnrolmentRequest
+
+@{
+    ViewData["Title"] = "Enrol in Event";
+    var categories = ViewBag.Categories as
+        List<RaceManagementMVC.Models.categoryModel>
+        ?? new List<RaceManagementMVC.Models.categoryModel>();
+}
+
+<div class="container mt-4">
+
+    <h1>Enrol in Event</h1>
+
+    <p>Select the category you want to participate in.</p>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    @if (categories.Count == 0)
+    {
+        <div class="alert alert-warning">
+            No categories are available. Please contact the organiser.
+        </div>
+    }
+    else
+    {
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <form asp-action="Enrol"
+              asp-route-eventId="@ViewBag.EventId"
+              method="post">
+
+            <div class="mb-3">
+
+                <label asp-for="categoryId" class="form-label">
+                    Select Category
+                </label>
+
+                <select asp-for="categoryId" class="form-select">
+
+                    <option value="">Choose a category</option>
+
+                    @foreach (var category in categories)
+                    {
+                        <option value="@category.categoryId">
+                            @category.categoryName - @category.description
+                        </option>
+                    }
+
+                </select>
+
+                <span asp-validation-for="categoryId"
+                      class="text-danger"></span>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Confirm Enrolment
+            </button>
+
+            <a asp-controller="Events"
+               asp-action="Details"
+               asp-route-id="@ViewBag.EventId"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </form>
+    }
+
+</div>

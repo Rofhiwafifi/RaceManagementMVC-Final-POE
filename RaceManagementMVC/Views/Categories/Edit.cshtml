@@ -1,0 +1,55 @@
+﻿@model RaceManagementMVC.Models.createCategoryRequest
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<div class="container mt-4">
+
+    <h1>Edit Category</h1>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form asp-action="Edit"
+          asp-route-id="@ViewBag.CategoryId"
+          method="post">
+
+        <div class="mb-3">
+            <label asp-for="categoryName" class="form-label">
+                Category Name
+            </label>
+
+            <input asp-for="categoryName" class="form-control" />
+
+            <span asp-validation-for="categoryName"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="description" class="form-label">
+                Description
+            </label>
+
+            <textarea asp-for="description"
+                      class="form-control"></textarea>
+
+            <span asp-validation-for="description"
+                  class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Changes
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>

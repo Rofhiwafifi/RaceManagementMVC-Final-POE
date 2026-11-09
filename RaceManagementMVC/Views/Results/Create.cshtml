@@ -1,0 +1,80 @@
+﻿@model RaceManagementMVC.Models.createResultRequest
+
+@{
+    ViewData["Title"] = "Enter Result";
+}
+
+<div class="container mt-4">
+
+    <h1>Enter Participant Result</h1>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form asp-action="Create"
+          asp-route-eventId="@ViewBag.EventId"
+          method="post">
+
+        <div class="mb-3">
+            <label asp-for="enrolmentId" class="form-label">
+                Enrolment ID
+            </label>
+
+            <input asp-for="enrolmentId"
+                   class="form-control"
+                   readonly />
+
+            <span asp-validation-for="enrolmentId"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="position" class="form-label">
+                Finishing Position
+            </label>
+
+            <input asp-for="position"
+                   type="number"
+                   min="1"
+                   class="form-control" />
+
+            <span asp-validation-for="position"
+                  class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="finishTime" class="form-label">
+                Finish Time
+            </label>
+
+            <input asp-for="finishTime"
+                   type="time"
+                   step="1"
+                   class="form-control" />
+
+            <span asp-validation-for="finishTime"
+                  class="text-danger"></span>
+        </div>
+
+        <input type="hidden"
+               asp-for="resultStatus"
+               value="Published" />
+
+        <button type="submit" class="btn btn-primary">
+            Save Result
+        </button>
+
+        <a asp-controller="Results"
+           asp-action="Index"
+           asp-route-eventId="@ViewBag.EventId"
+           class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>

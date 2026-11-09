@@ -1,0 +1,68 @@
+﻿@model List<RaceManagementMVC.Models.eventModel>
+@{
+    ViewData["Title"] = "Participant Home";
+}
+<div class="container page-wrap">
+    <div class="hero-panel mb-4">
+        <span class="eyebrow">YOUR NEXT FINISH LINE</span>
+        <h1>Hey, @Context.Session.GetString("name")! 👋</h1>
+        <p>Find your next race, challenge yourself, and celebrate every finish.</p>
+        <a class="btn btn-light rounded-pill px-4" asp-controller="Enrolments" asp-action="MyEnrolments">My Enrolments →</a>
+    </div>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <div class="cute-panel mb-4">
+        <h2 class="section-title">Find your next event 🔎</h2>
+        <form method="get" class="row g-3">
+            <div class="col-md-4"><label class="form-label">Name or location</label><input name="search" value="@ViewBag.Search" class="form-control" placeholder="e.g. Soweto, Fun Run" /></div>
+            <div class="col-md-4">
+                <label class="form-label">Event type</label>
+                <select name="eventType" class="form-select">
+                    <option value="">All types</option>
+                    @foreach (var t in new[] { "Running", "Walking", "Cycling", "Other" })
+                    {
+                        <option value="@t" selected="@(ViewBag.EventType?.ToString() == t)">@t</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2"><label class="form-label">Max distance (km)</label><input name="maxDistance" type="number" min="0" step="0.1" value="@ViewBag.MaxDistance" class="form-control" placeholder="Any" /></div>
+            <div class="col-md-2 d-flex align-items-end"><button class="btn btn-raceday w-100">Filter</button></div>
+        </form>
+    </div>
+
+    <h2 class="section-title">Upcoming races 🏃‍♀️</h2>
+    @if (!Model.Any())
+    {
+        <div class="empty-state">No upcoming races match those filters. Try changing them!</div>
+    }
+    else
+    {
+        <div class="row g-4">
+            @foreach (var ev in Model)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="card event-card h-100">
+                        @if (!string.IsNullOrWhiteSpace(ev.bannerImageUrl))
+                        {
+                            <img src="@ev.bannerImageUrl" class="event-banner" alt="Race banner" />
+                        }
+                        <div class="card-body">
+                            <span class="event-chip">@ev.eventType</span>
+                            <h3 class="h5 mt-2">@ev.eventName</h3>
+                            <p class="text-muted">@ev.description</p>
+                            <p>📅 @ev.eventDate.ToString("dd MMM yyyy")</p>
+                            <p>📍 @ev.venue</p>
+                            <p>🏁 @ev.distance km</p>
+                            <a class="btn btn-raceday" asp-controller="Events" asp-action="Details" asp-route-id="@ev.eventId">Explore race</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+

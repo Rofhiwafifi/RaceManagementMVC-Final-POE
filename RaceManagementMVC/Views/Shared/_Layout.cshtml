@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RaceDay</title>
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+    <link rel="stylesheet" href="/css/site.css?v=RaceDayFix1" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="container nav-wrap">
+            <a class="brand" asp-controller="Home" asp-action="Index">RaceDay<span>.</span></a>
+            <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('show')" aria-label="Toggle navigation">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Events" asp-action="Index">Events</a>
+                @if (Context.Session.GetString("role") == "Organiser")
+                {
+                    <a asp-controller="Organiser" asp-action="Index">Dashboard</a>
+                    <a asp-controller="Categories" asp-action="Index">Categories</a>
+                    <a asp-controller="Enrolments" asp-action="Index">Enrolments</a>
+                    <a asp-controller="Results" asp-action="Index">Results</a>
+                }
+                @if (Context.Session.GetString("role") == "Participant")
+                {
+                    <a asp-controller="Participant" asp-action="Index">Dashboard</a>
+                    <a asp-controller="Enrolments" asp-action="MyEnrolments">My Enrolments</a>
+                    <a asp-controller="Results" asp-action="MyResults">My Results</a>
+                }
+                @if (Context.Session.GetString("token") != null)
+                {
+                    <a asp-controller="Profile" asp-action="Index">Profile</a>
+                    <a class="nav-button" asp-controller="Auth" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a asp-controller="Auth" asp-action="Login">Login</a>
+                    <a class="nav-button" asp-controller="Auth" asp-action="Register">Register</a>
+                }
+            </div>
+        </nav>
+    </header>
+    <main class="main-content">@RenderBody()</main>
+    <footer class="site-footer"><div class="container footer-wrap"><strong>RaceDay</strong><span>Run your race. Own your pace.</span></div></footer>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿@model List<RaceManagementMVC.Models.categoryModel>
+
+@{
+    ViewData["Title"] = "Categories";
+    string role = Context.Session.GetString("role") ?? "";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Race Categories</h1>
+
+        @if (role == "Organiser")
+        {
+            <a asp-action="Create" class="btn btn-primary">
+                Add Category
+            </a>
+        }
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-info">No categories are available.</div>
+    }
+    else
+    {
+        <div class="row">
+
+            @foreach (var category in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+
+                            <h5>@category.categoryName</h5>
+
+                            <p>@category.description</p>
+
+                            @if (role == "Organiser")
+                            {
+                                <a asp-action="Edit"
+                                   asp-route-id="@category.categoryId"
+                                   class="btn btn-warning">
+                                    Edit
+                                </a>
+
+                                <form asp-action="Delete"
+                                      asp-route-id="@category.categoryId"
+                                      method="post"
+                                      class="d-inline"
+                                      onsubmit="return confirm('Delete this category?');">
+
+                                    <button type="submit"
+                                            class="btn btn-danger">
+                                        Delete
+                                    </button>
+
+                                </form>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    }
+
+</div>

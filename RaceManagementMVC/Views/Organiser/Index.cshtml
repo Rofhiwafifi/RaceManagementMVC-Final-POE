@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Organiser Dashboard";
+}
+<div class="container page-wrap">
+    <div class="hero-panel">
+        <span class="eyebrow">RACEDAY ORGANISER</span>
+        <h1>Welcome back, @Context.Session.GetString("name")! 🎉</h1>
+        <p>Your race HQ — let's make every event a great one.</p>
+    </div>
+    <div class="row g-4 mt-3">
+        <div class="col-md-3"><a class="dashboard-tile tile-blue" asp-controller="Events" asp-action="Index"><span>📅</span><strong>Manage Events</strong><small>Create, edit and view races</small></a></div>
+        <div class="col-md-3"><a class="dashboard-tile tile-pink" asp-controller="Categories" asp-action="Index"><span>🏷️</span><strong>Manage Categories</strong><small>Age and distance groups</small></a></div>
+        <div class="col-md-3"><a class="dashboard-tile tile-yellow" asp-controller="Enrolments" asp-action="Index"><span>👟</span><strong>Enrolments</strong><small>Choose an event to see runners</small></a></div>
+        <div class="col-md-3"><a class="dashboard-tile tile-green" asp-controller="Results" asp-action="Index"><span>🏆</span><strong>Manage Results</strong><small>Choose a race and publish times</small></a></div>
+    </div>
+</div>

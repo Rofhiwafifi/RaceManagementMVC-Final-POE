@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    var loggedIn = Context.Session.GetString("token") != null;
+}
+<section class="welcome">
+    <div class="container welcome-inner">
+        <p class="small-label">WELCOME TO RACEDAY</p>
+        <h1>Find your next <span>finish line.</span></h1>
+        <p class="welcome-text">Discover races, register for events and keep track of your results all in one place.</p>
+        <div class="welcome-buttons">
+            <a asp-controller="Events" asp-action="Index" class="btn btn-primary">Explore Events</a>
+            @if (!loggedIn)
+            {
+                <a asp-controller="Auth" asp-action="Register" class="btn btn-outline-light">Create an Account</a>
+            }
+            else if (Context.Session.GetString("role") == "Organiser")
+            {
+                <a asp-controller="Organiser" asp-action="Index" class="btn btn-outline-light">Go to Dashboard</a>
+            }
+            else
+            {
+                <a asp-controller="Participant" asp-action="Index" class="btn btn-outline-light">My Dashboard</a>
+            }
+        </div>
+    </div>
+</section>
+<section class="container benefits">
+    <h2>Everything you need for race day</h2>
+    <p class="section-subtitle">Simple tools to help you get ready, take part and track your progress.</p>
+    <div class="benefit-grid">
+        <div class="benefit-card"><div class="benefit-icon">01</div><h3>Discover Events</h3><p>Browse races and challenges and find an event that suits your goals.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">02</div><h3>Easy Registration</h3><p>Register for events and view your enrolments in one convenient place.</p></div>
+        <div class="benefit-card"><div class="benefit-icon">03</div><h3>Track Results</h3><p>Check your results and celebrate the progress you make.</p></div>
+    </div>
+</section>
+<section class="container simple-cta">
+    <div><h2>Ready to get started?</h2><p>Your next race is just a few clicks away.</p></div>
+    <a asp-controller="Events" asp-action="Index" class="btn btn-primary">View Events</a>
+</section>

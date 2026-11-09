@@ -1,0 +1,80 @@
+﻿@model RaceManagementMVC.Models.OrganiserEventSelectionViewModel
+@{
+    ViewData["Title"] = "Manage Results";
+}
+<div class="container page-wrap">
+    <div class="page-heading">
+        <span class="eyebrow">ORGANISER SPACE</span>
+        <h1>🏅 Race Results</h1>
+        <p>Enter finish times, then publish the results when they're ready.</p>
+    </div>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    <div class="cute-panel mb-4">
+        <form method="get" asp-action="Index" class="row g-3 align-items-end">
+            <div class="col-md-8">
+                <label class="form-label">Choose race</label>
+                <select name="eventId" class="form-select" required>
+                    <option value="">Choose an event...</option>
+                    @foreach (var ev in Model.Events)
+                    {
+                        <option value="@ev.eventId" selected="@(Model.SelectedEventId == ev.eventId)">
+                            @ev.eventName — @ev.eventDate.ToString("dd MMM yyyy")
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4"><button class="btn btn-raceday w-100" type="submit">View Results</button></div>
+        </form>
+    </div>
+
+    @if (Model.SelectedEventId.HasValue)
+    {
+        if (Model.Results.Count == 0)
+        {
+            <div class="empty-state">🏁 No results have been recorded for this event yet.</div>
+        }
+        else
+        {
+            <div class="table-responsive cute-panel">
+                <table class="table align-middle">
+                    <thead><tr><th>Enrolment</th><th>Position</th><th>Finish time</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody>
+                        @foreach (var r in Model.Results)
+                        {
+                            <tr>
+                                <td>@r.enrolmentId</td>
+                                <td>@r.position</td>
+                                <td>@r.finishTime</td>
+                                <td><span class="status-pill @(r.resultStatus == "Published" ? "status-good" : "status-wait")">@r.resultStatus</span></td>
+                                <td>
+                                    @if (r.resultStatus != "Published")
+                                    {
+                                        <form asp-action="Publish" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@r.resultId" />
+                                            <input type="hidden" name="eventId" value="@Model.SelectedEventId" />
+                                            <button class="btn btn-sm btn-soft" type="submit">Publish</button>
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    }
+    <a class="btn btn-outline-secondary mt-3" asp-controller="Events" asp-action="Index">← Back to events</a>
+</div>

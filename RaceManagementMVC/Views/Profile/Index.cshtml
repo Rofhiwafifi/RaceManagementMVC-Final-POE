@@ -1,0 +1,118 @@
+﻿@model RaceManagementMVC.Models.profileModel
+
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+<div class="container mt-4">
+
+    <h2>My Profile</h2>
+    <p>View and update your account information.</p>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    }
+
+    <div class="card p-4 mb-4">
+
+        <h4>Profile Picture</h4>
+
+        @if (!string.IsNullOrEmpty(Model?.profilePictureUrl))
+        {
+            <img src="@Model.profilePictureUrl"
+                 alt="Profile picture"
+                 class="rounded-circle mb-3"
+                 style="width:120px;height:120px;object-fit:cover;" />
+        }
+        else
+        {
+            <div class="mb-3">
+                <p>No profile picture uploaded.</p>
+            </div>
+        }
+
+        <form asp-action="UploadPicture"
+              method="post"
+              enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label class="form-label">Choose a picture</label>
+                <input type="file"
+                       name="profilePicture"
+                       class="form-control"
+                       accept="image/*"
+                       required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Upload Picture
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="card p-4">
+
+        <h4>Account Details</h4>
+
+        <form asp-action="Update" method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input name="name"
+                       value="@Model?.name"
+                       class="form-control"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Surname</label>
+                <input name="surname"
+                       value="@Model?.surname"
+                       class="form-control"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input name="email"
+                       type="email"
+                       value="@Model?.email"
+                       class="form-control"
+                       required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Role</label>
+                <input value="@Model?.role"
+                       class="form-control"
+                       readonly />
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Save Changes
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

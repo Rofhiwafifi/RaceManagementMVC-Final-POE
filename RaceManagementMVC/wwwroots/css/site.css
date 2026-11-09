@@ -1,0 +1,471 @@
+﻿/* RaceDay styling - replaces the default ASP.NET site.css */
+:root {
+    --navy: #101b35;
+    --blue: #2563eb;
+    --blue2: #1d4ed8;
+    --yellow: #ffd43b;
+    --coral: #ff6b6b;
+    --ink: #172033;
+    --muted: #687386;
+    --bg: #f4f7fb;
+    --line: #e4eaf2
+}
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    font-size: 16px;
+    min-height: 100%;
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Inter,"Segoe UI",Roboto,Arial,sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+a {
+    color: var(--blue);
+    text-decoration: none
+}
+
+    a:hover {
+        color: var(--blue2)
+    }
+
+.site-header {
+    background: var(--navy);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(16,27,53,.18)
+}
+
+.nav-wrap {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px
+}
+
+.brand {
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: white !important
+}
+
+    .brand span {
+        color: var(--yellow)
+    }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap
+}
+
+    .nav-links a {
+        color: #e9efff;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: .93rem
+    }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,.1);
+            color: white
+        }
+
+    .nav-links .nav-button {
+        background: var(--yellow);
+        color: var(--navy);
+        font-weight: 800;
+        padding: 10px 17px
+    }
+
+        .nav-links .nav-button:hover {
+            background: #ffe477;
+            color: var(--navy)
+        }
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid #536078;
+    color: #fff;
+    border-radius: 8px;
+    padding: 7px 12px
+}
+
+.main-content {
+    flex: 1;
+    width: 100%;
+    padding: 32px 0 50px
+}
+
+.site-footer {
+    background: #0b1328;
+    color: #aebbd2;
+    padding: 20px 0;
+    margin-top: auto
+}
+
+.footer-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px
+}
+
+    .footer-wrap strong {
+        color: #fff;
+        font-size: 1.1rem
+    }
+
+h1, h2, h3, h4, h5 {
+    color: var(--navy);
+    font-weight: 800;
+    letter-spacing: -.35px
+}
+
+h1 {
+    font-size: clamp(2rem,4vw,3.3rem);
+    line-height: 1.12
+}
+
+p {
+    color: var(--muted);
+    line-height: 1.7
+}
+
+.btn {
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 10px 17px;
+    transition: .18s
+}
+
+    .btn:hover {
+        transform: translateY(-1px)
+    }
+
+.btn-primary {
+    background: var(--blue);
+    border-color: var(--blue)
+}
+
+    .btn-primary:hover {
+        background: var(--blue2);
+        border-color: var(--blue2)
+    }
+
+.btn-warning {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--navy)
+}
+
+    .btn-warning:hover {
+        background: #ffe477;
+        color: var(--navy)
+    }
+
+.btn-outline-light {
+    border-width: 2px
+}
+
+.card, .table-responsive, .form-card {
+    border: 1px solid var(--line);
+    border-radius: 16px !important;
+    background: #fff;
+    box-shadow: 0 8px 26px rgba(25,42,70,.06);
+    overflow: hidden
+}
+
+.card {
+    transition: transform .18s,box-shadow .18s
+}
+
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(25,42,70,.1)
+    }
+
+.card-header {
+    background: #f8faff;
+    border-bottom: 1px solid var(--line);
+    font-weight: 800;
+    color: var(--navy);
+    padding: 15px 20px
+}
+
+.card-body {
+    padding: 22px
+}
+
+.form-control, .form-select {
+    border: 1px solid #d8e0ec;
+    border-radius: 10px;
+    padding: 11px 13px;
+    min-height: 44px
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #7aa7ff;
+        box-shadow: 0 0 0 .22rem rgba(37,99,235,.13)
+    }
+
+.form-label {
+    font-weight: 700;
+    color: #29364d
+}
+
+.table {
+    vertical-align: middle;
+    margin-bottom: 0
+}
+
+    .table thead th {
+        background: var(--navy);
+        color: #fff;
+        border: 0;
+        padding: 14px;
+        white-space: nowrap
+    }
+
+    .table tbody td {
+        padding: 13px 14px;
+        border-color: #edf1f6
+    }
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    background: #f8faff
+}
+
+.table-hover tbody tr:hover > * {
+    background: #eef4ff
+}
+
+.alert {
+    border: 0;
+    border-radius: 12px;
+    padding: 14px 18px
+}
+
+.badge {
+    border-radius: 999px;
+    padding: .45em .75em
+}
+/* Homepage hero and feature tiles */
+.welcome {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(120deg,#101b35 0%,#172d56 58%,#2563eb 100%);
+    color: white;
+    padding: 76px 0 84px;
+    margin-top: -32px
+}
+
+    .welcome:before {
+        content: "";
+        position: absolute;
+        width: 340px;
+        height: 340px;
+        border-radius: 50%;
+        background: rgba(255,212,59,.13);
+        right: -75px;
+        top: -130px
+    }
+
+    .welcome:after {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border: 35px solid rgba(255,255,255,.06);
+        border-radius: 50%;
+        right: 15%;
+        bottom: -135px
+    }
+
+.welcome-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1140px
+}
+
+.small-label {
+    color: var(--yellow);
+    font-size: .78rem;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    margin-bottom: 14px
+}
+
+.welcome h1 {
+    color: white;
+    max-width: 720px;
+    font-size: clamp(2.7rem,6vw,4.7rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 20px
+}
+
+    .welcome h1 span {
+        color: var(--yellow)
+    }
+
+.welcome-text {
+    color: #d9e4fb;
+    max-width: 650px;
+    font-size: 1.15rem;
+    margin-bottom: 28px
+}
+
+.welcome-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap
+}
+
+    .welcome-buttons .btn {
+        padding: 13px 22px
+    }
+
+.benefits {
+    padding-top: 52px;
+    padding-bottom: 30px
+}
+
+    .benefits > h2 {
+        text-align: center;
+        font-size: 2rem
+    }
+
+.section-subtitle {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 30px
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: 22px;
+    margin-top: 28px
+}
+
+.benefit-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 27px 25px;
+    box-shadow: 0 8px 26px rgba(25,42,70,.05);
+    transition: .2s
+}
+
+    .benefit-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 32px rgba(25,42,70,.1)
+    }
+
+.benefit-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    background: #fff4bd;
+    color: var(--navy);
+    font-weight: 900;
+    border-radius: 14px;
+    margin-bottom: 18px
+}
+
+.benefit-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 9px
+}
+
+.benefit-card p {
+    margin: 0
+}
+
+.simple-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 26px 30px;
+    margin-top: 25px;
+    margin-bottom: 20px
+}
+
+    .simple-cta h2 {
+        margin: 0 0 5px;
+        font-size: 1.55rem
+    }
+
+    .simple-cta p {
+        margin: 0
+    }
+
+@media(max-width:850px) {
+    .nav-wrap {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        flex-wrap: wrap
+    }
+
+    .menu-toggle {
+        display: block
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 8px 0 12px
+    }
+
+        .nav-links.show {
+            display: flex
+        }
+
+        .nav-links a {
+            width: 100%
+        }
+
+    .welcome {
+        padding: 55px 0 62px
+    }
+
+    .benefit-grid {
+        grid-template-columns: 1fr
+    }
+
+    .simple-cta {
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+    .footer-wrap {
+        flex-direction: column;
+        align-items: flex-start
+    }
+}
