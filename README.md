@@ -42,3 +42,17 @@ The application uses user role information, including:
 The user's role and authentication information are stored in the session
 after a successful login. The backend API remains responsible for
 validating protected API requests.
+
+Application Architecture
+The general request flow is:
+1. A user opens a page or submits a form in the browser.
+2. ASP.NET Core routes the request to the relevant controller action.
+3. The controller validates the input and uses apiService when
+   backend data is required.
+4. apiService sends an HTTP request to the configured backend API.
+5. The API returns a response, normally containing JSON data.
+6. The controller processes the response and returns a Razor view.
+7. The view displays the result to the user.
+For example, when a participant opens the event list, EventsController
+requests the event data through apiService and passes the returned
+events to the Events/Index.cshtml view.
