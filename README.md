@@ -98,3 +98,13 @@ Participant enrols in an event
 4. Select the enrolment option.
 5. Complete and submit the enrolment form.
 6. Open My Enrolments to view personal enrolments.
+
+Results are managed
+1. Open the results section.
+2. Select the relevant event and enrolment.
+3. Enter the participant's position and finish time, and any applicable
+   score.
+4. Submit the result.
+5. Publish the result when it is ready.
+6. Participants can view their results in My Results.
+
