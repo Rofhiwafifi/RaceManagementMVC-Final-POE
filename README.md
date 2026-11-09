@@ -91,4 +91,10 @@ Organiser manages an event
 5. Edit or delete an event when required.
 6. Manage the categories and results associated with race events.
 
-
+Participant enrols in an event
+1. Log in as a participant.
+2. Browse the event list.
+3. Open the details page for an event.
+4. Select the enrolment option.
+5. Complete and submit the enrolment form.
+6. Open My Enrolments to view personal enrolments.
