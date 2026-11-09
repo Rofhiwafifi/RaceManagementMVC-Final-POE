@@ -56,3 +56,9 @@ The general request flow is:
 For example, when a participant opens the event list, EventsController
 requests the event data through apiService and passes the returned
 events to the Events/Index.cshtml view.
+
+Configuration and secrets
+Do not commit real passwords, private API keys or production credentials
+to source control. Use development user secrets or environment variables
+for sensitive configuration. The API base URL is configuration, and
+should be changed to match the environment where the API is running.
