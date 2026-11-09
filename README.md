@@ -74,3 +74,11 @@ Option 1: Visual Studio
 6. Run the project using the HTTPS profile.
 7. Open the local URL shown by Visual Studio.
 
+Typical User Workflows
+Register and log in
+1. Open the registration page.
+2. Enter the required account details and select a role.
+3. Submit the registration form.
+4. Open the login page and enter the account credentials.
+5. After a successful login, the application stores the returned user
+   information and token in the session.
