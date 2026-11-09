@@ -14,3 +14,21 @@ The project uses the Model-View-Controller (MVC) pattern:
 - apiService centralises HTTP communication with the backend API.
 The MVC application and backend API are separate applications. The MVC
 project depends on the API being available at the configured base URL.
+
+Main Features
+The project contains pages and controller actions for the following
+functionality:
+- Account access: user registration, login and logout.
+- Event management: list events, view event details, create
+  events, edit events and delete events.
+- Category management: view, create, edit and delete event
+  categories.
+- Participant enrolments: display enrolments, enrol a participant
+  in an event, view personal enrolments and cancel an enrolment.
+- Results: view results, create results, publish results and view
+  a participant's own results.
+- User profiles: view and update profile information and upload a
+  profile picture.
+- Dashboards: separate organiser and participant dashboard pages.
+- Form validation: model validation attributes and client-side
+  validation support.
