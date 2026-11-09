@@ -90,4 +90,5 @@ Organiser manages an event
 4. View existing events or create a new event.
 5. Edit or delete an event when required.
 6. Manage the categories and results associated with race events.
-7. 
+
+
