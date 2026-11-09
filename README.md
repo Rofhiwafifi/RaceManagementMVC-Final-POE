@@ -119,3 +119,8 @@ Validation and Session Handling
 - The API service adds a Bearer authentication header when a token is
   available in the session.
 
+CI WORKFLOW
+<img width="1356" height="601" alt="image" src="https://github.com/user-attachments/assets/882317ff-7413-445b-ad8d-6174d9f5e5a4" />
+
+Youtube Link
+https://youtu.be/BudmfSfUQZo?si=HuGlSQPr1N9T9_VI
